@@ -28,14 +28,14 @@ The solution focuses on network isolation, high availability, shared storage, au
                     |   Internal ALB   |
                     |      HTTP :80    |
                     +------------------+
-                             |
+                             | Forward to Target Group :3000
                              v
                     +------------------+
                     |     App Tier     |
                     | Private EC2      |
-                    | Node.js Backend  |
+                    | Node.js Backend:3000 |
                     +------------------+
-                             |
+                             |PostgreSQL :5432
                              v
                     +------------------+
                     |  RDS PostgreSQL  |
@@ -122,11 +122,3 @@ CloudNova-NTI/
 - Tested S3 backup uploads.
 - Configured CloudWatch alarms and SNS notifications.
 - Observed Auto Scaling replace an unhealthy EC2 instance.
-
-## Documentation
-
-See [`docs/CloudNova_Documentation.pdf`](docs/CloudNova_Documentation.pdf) for detailed implementation steps, commands, configurations, and testing.
-
-## Notes
-
-This is an AWS learning project. The demo uses HTTP, and lab resources should be removed after testing to avoid unnecessary charges.
